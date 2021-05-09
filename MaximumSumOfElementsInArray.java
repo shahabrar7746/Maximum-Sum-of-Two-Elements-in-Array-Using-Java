@@ -13,15 +13,32 @@ public class MaximumSumOfElementsInArray {
 		for(int i = 0;i<array.length;i++) {
 			array[i] = s.nextInt();
 		}
-		//max variable will contain element with maximum value 
-		//And s_min will contain element with second maximum value 
-		
+		//max variable will contain element with maximum value
+               //This will find max for calulation of final answer and secondary maximum value
 int max = 0;
 int s_min = 0;
 for(int i = 0;i<array.length;i++) {
 	if(max < array[i]) {
+		
+		max = array[i];
+	}
+}
+//This loop will put max value at the tale of array to calculate secondary max
+int temp = 0;
+for(int i = 0;i<array.length;i++) {
+	if(max == array[i]) {
+		temp = array[array.length - 1];
+		array[array.length - 1] = max;
+		array[i] = temp;
+	}
+}
+max = 0;
+//This loop will calculate max ans secondary max value simultaneously 
+for(int i = 0;i<array.length;i++) {
+	if(max < array[i]) {
 		s_min = max;
 		max = array[i];
+		break;
 	}
 }
 System.out.println("Maximum Sum of Elements in Array is " + max + s_min);
